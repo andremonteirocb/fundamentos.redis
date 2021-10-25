@@ -1,11 +1,11 @@
 
 ## Configurações
-### Execute o comando para a criação do container abaixo:
+### Container Redis
 ```
     docker run -d -p 6379:6379 --name redis -v redis-volume:/data -it redis
 ```
 
-### Para visualizar as informações utilizando o redis-commander siga os passos abaixo:
+### Redis Commander
 ```
     npm install -g redis-commander
     redis-commander
