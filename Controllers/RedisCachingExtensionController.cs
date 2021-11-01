@@ -1,32 +1,29 @@
 ﻿using Fundamentos.Redis.Entities;
-using Fundamentos.Redis.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
 namespace Fundamentos.Redis.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class UsuarioController : ControllerBase
+    [Route("microsoft-extensions-caching-redis")]
+    public class RedisCachingExtensionController : ControllerBase
     {
-        private readonly ILogger<UsuarioController> _logger;
+        private readonly ILogger<RedisCachingExtensionController> _logger;
         private readonly IDistributedCache _cache;
-        public UsuarioController(
-            ILogger<UsuarioController> logger,
-            IDistributedCache cache,
-            IOptions<RedisSettings> settings)
+        public RedisCachingExtensionController(
+            ILogger<RedisCachingExtensionController> logger,
+            IDistributedCache cache)
         {
             _logger = logger;
             _cache = cache;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
-            var json = await _cache.GetStringAsync(id.ToString());
+            var json = await _cache.GetStringAsync(id);
             if (json == null) return NotFound();
 
             return Ok(json.toUser());
@@ -39,10 +36,17 @@ namespace Fundamentos.Redis.Controllers
             return Ok(user);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPut]
+        public async Task<IActionResult> Put(string id, User user)
         {
-            await _cache.RemoveAsync(id.ToString());
+            await _cache.SetStringAsync(id, user.toJson());
+            return Ok(user);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _cache.RemoveAsync(id);
             return Ok();
         }
     }
