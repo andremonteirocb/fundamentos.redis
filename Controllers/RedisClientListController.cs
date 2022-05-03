@@ -1,11 +1,7 @@
-﻿using Fundamentos.Redis.Entities;
-using Fundamentos.Redis.Settings;
+﻿using Fundamentos.Redis.Settings;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ServiceStack.Redis;
-using System;
-using System.Collections.Generic;
 
 namespace Fundamentos.Redis.Controllers
 {

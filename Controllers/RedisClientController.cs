@@ -1,8 +1,6 @@
 ﻿using Fundamentos.Redis.Entities;
-using Fundamentos.Redis.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using ServiceStack.Redis;
 
 namespace Fundamentos.Redis.Controllers
@@ -12,41 +10,53 @@ namespace Fundamentos.Redis.Controllers
     public class RedisClientController : ControllerBase
     {
         private readonly ILogger<RedisClientController> _logger;
-        private readonly IRedisClient _client;
+        private readonly IRedisClientsManager _manager;
         public RedisClientController(
             ILogger<RedisClientController> logger,
-            IOptions<RedisSettings> options)
+            IRedisClientsManager manager)
         {
             _logger = logger;
-            _client = new RedisClient(options.Value.RedisConnection);
+            _manager = manager;
         }
 
         [HttpGet]
         public IActionResult Get(string id)
         {
-            var user = _client.Get<User>(id);
-            return Ok(user);
+            using (var client = _manager.GetClient())
+            {
+                var user = client.Get<User>(id);
+                return Ok(user);
+            }
         }
 
         [HttpPost]
         public IActionResult Post(User user)
         {
-            _client.Add(user.Id.ToString(), user);
-            return Ok(user);
+            using (var client = _manager.GetClient())
+            {
+                client.Add(user.Id.ToString(), user);
+                return Ok(user);
+            }
         }
 
         [HttpPut]
         public IActionResult Put(string id, User user)
         {
-            _client.Set(id, user);
-            return Ok(user);
+            using (var client = _manager.GetClient())
+            {
+                client.Set(id, user);
+                return Ok(user);
+            }
         }
 
         [HttpDelete]
         public IActionResult Delete(string id)
         {
-            _client.Remove(id);
-            return Ok();
+            using (var client = _manager.GetClient())
+            {
+                client.Remove(id);
+                return Ok();
+            }
         }
     }
 }

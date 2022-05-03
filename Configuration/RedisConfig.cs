@@ -1,6 +1,7 @@
 ﻿using Fundamentos.Redis.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServiceStack.Redis;
 
 namespace Fundamentos.Redis.Configuration
 {
@@ -12,6 +13,7 @@ namespace Fundamentos.Redis.Configuration
             var redisSettings = redisSection.Get<RedisSettings>();
             services.Configure<RedisSettings>(redisSection);
 
+            services.AddSingleton<IRedisClientsManager>((sp) => new RedisManagerPool(configuration["RedisSettings:RedisConnection"]));
             services.AddDistributedRedisCache(options =>
             {
                 options.Configuration = redisSettings.RedisConnection;
