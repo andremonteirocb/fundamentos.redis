@@ -5,6 +5,9 @@ using ServiceStack.Redis;
 
 namespace Fundamentos.Redis.Controllers
 {
+    /// <summary>
+    /// Controller utilizando [LISTAS] diretamente a classe redisclient, isso pode causar problemas com sistemas multi threads
+    /// </summary>
     [ApiController]
     [Route("service-stack-redis-list")]
     public class RedisClientListController : ControllerBase
@@ -17,21 +20,38 @@ namespace Fundamentos.Redis.Controllers
             _client = new RedisClient(options.Value.RedisConnection);
         }
 
+        /// <summary>
+        /// Obtendo todos os elementos da lista
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(string[]), 200)]
         public IActionResult Get()
         {
             var ids = _client.GetAllItemsFromList(_listId);
             return Ok(ids);
         }
 
+        /// <summary>
+        /// Inserindo elemento na lista
+        /// </summary>
+        /// <param name="atendimentoid">id do atendimento</param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(typeof(string), 200)]
         public IActionResult Post(string atendimentoid)
         {
             _client.AddItemToList(_listId, atendimentoid);
             return Ok(atendimentoid);
         }
 
+        /// <summary>
+        /// Removendo elemento da lista
+        /// </summary>
+        /// <param name="atendimentoid">id do atendimento</param>
+        /// <returns></returns>
         [HttpDelete]
+        [ProducesResponseType(typeof(long), 200)]
         public IActionResult Delete(string atendimentoid)
         {
             var result = _client.RemoveItemFromList(_listId, atendimentoid);

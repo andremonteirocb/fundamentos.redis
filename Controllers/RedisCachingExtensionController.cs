@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fundamentos.Redis.Controllers
 {
+    /// <summary>
+    /// Controller utilizando [STRINGS] a biblioteca RedisCachingExtension: Microsoft.Extensions.Caching.Redis
+    /// </summary>
     [ApiController]
     [Route("microsoft-extensions-caching-redis")]
     public class RedisCachingExtensionController : ControllerBase
@@ -20,6 +23,11 @@ namespace Fundamentos.Redis.Controllers
             _cache = cache;
         }
 
+        /// <summary>
+        ///  Obtendo usuário pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get(string id)
         {
@@ -29,6 +37,11 @@ namespace Fundamentos.Redis.Controllers
             return Ok(json.toUser());
         }
 
+        /// <summary>
+        /// Inserindo usuário
+        /// </summary>
+        /// <param name="user">objeto usuário</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {
@@ -36,6 +49,12 @@ namespace Fundamentos.Redis.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Atualizando usuário
+        /// </summary>
+        /// <param name="id">id do usuário</param>
+        /// <param name="user">objeto usuário</param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> Put(string id, User user)
         {
@@ -43,6 +62,10 @@ namespace Fundamentos.Redis.Controllers
             return Ok(user);
         }
 
+        /// <summary>
+        /// Removendo o usuário pelo id
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {

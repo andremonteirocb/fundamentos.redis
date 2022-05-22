@@ -1,20 +1,21 @@
-﻿using Fundamentos.Redis.Entities;
-using Fundamentos.Redis.Extensions;
+﻿using Fundamentos.Redis.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ServiceStack.Redis;
-using System;
 
 namespace Fundamentos.Redis.Controllers
 {
+    /// <summary>
+    /// Controller utilizando [FILAS]
+    /// </summary>
     [ApiController]
     [Route("service-stack-redis-queue")]
-    public class QueueClientController : ControllerBase
+    public class QueueController : ControllerBase
     {
         private const string queuename = "fila:confirma-email";
         private readonly ILogger<RedisClientController> _logger;
         private readonly IRedisClientsManager _manager;
-        public QueueClientController(
+        public QueueController(
             ILogger<RedisClientController> logger,
             IRedisClientsManager manager)
         {
@@ -22,7 +23,12 @@ namespace Fundamentos.Redis.Controllers
             _manager = manager;
         }
 
+        /// <summary>
+        /// Obtendo o primeiro elemento e removendo da fila
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(string), 200)]
         public IActionResult Get()
         {
             using (var client = _manager.GetClient())
@@ -36,6 +42,10 @@ namespace Fundamentos.Redis.Controllers
             }
         }
 
+        /// <summary>
+        /// Inserindo um elemento ao final da fila
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(string email)
         {
@@ -47,6 +57,10 @@ namespace Fundamentos.Redis.Controllers
             }
         }
 
+        /// <summary>
+        /// Removendo um elemento da fila
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete]
         public IActionResult Delete(string id)
         {
