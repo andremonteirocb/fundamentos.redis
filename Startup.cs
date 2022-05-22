@@ -14,12 +14,15 @@ namespace Fundamentos.Redis
 {
     public class Startup
     {
-
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        } 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(342432);
             services.AddMvc();
             services.AddSwaggerConfig();
             services.AddRedis(Configuration);
