@@ -22,7 +22,7 @@ namespace Fundamentos.Redis
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(342432);
+            services.AddControllers(1);
             services.AddMvc();
             services.AddSwaggerConfig();
             services.AddRedis(Configuration);
