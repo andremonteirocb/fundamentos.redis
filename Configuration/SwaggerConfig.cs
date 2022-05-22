@@ -85,7 +85,7 @@ namespace Fundamentos.Redis.Configuration
                 Title = "Fundamentos Redis - API",
                 Version = description.ApiVersion.ToString(),
                 Description = "Esta API é para estudo sobre Redis",
-                Contact = new OpenApiContact() { Name = "Redis", Email = "contato@redis.com.br" }
+                Contact = new OpenApiContact() { Name = "Linkedin", Url = new Uri("https://www.linkedin.com/in/andr%C3%A9-monteiro-a0510428/") }
             };
 
             if (description.IsDeprecated)

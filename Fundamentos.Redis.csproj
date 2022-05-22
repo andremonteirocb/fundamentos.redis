@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>C:\Users\andre\Dropbox\Programação\ASP.Net\Estudos\Fundamentos.Redis\Fundamentos.Redis.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

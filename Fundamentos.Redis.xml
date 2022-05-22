@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fundamentos.Redis</name>
+    </assembly>
+    <members>
+        <member name="T:Fundamentos.Redis.Controllers.QueueController">
+            <summary>
+            Controller utilizando [FILAS]
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.QueueController.Get">
+            <summary>
+            Obtendo o primeiro elemento e removendo da fila
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.QueueController.Post(System.String)">
+            <summary>
+            Inserindo um elemento ao final da fila
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.QueueController.Delete(System.String)">
+            <summary>
+            Removendo um elemento da fila
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Fundamentos.Redis.Controllers.RedisCachingExtensionController">
+            <summary>
+            Controller utilizando [STRINGS] a biblioteca RedisCachingExtension: Microsoft.Extensions.Caching.Redis
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisCachingExtensionController.Get(System.String)">
+            <summary>
+             Obtendo usuário pelo id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisCachingExtensionController.Post(Fundamentos.Redis.Entities.User)">
+            <summary>
+            Inserindo usuário
+            </summary>
+            <param name="user">objeto usuário</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisCachingExtensionController.Put(System.String,Fundamentos.Redis.Entities.User)">
+            <summary>
+            Atualizando usuário
+            </summary>
+            <param name="id">id do usuário</param>
+            <param name="user">objeto usuário</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisCachingExtensionController.Delete(System.String)">
+            <summary>
+            Removendo o usuário pelo id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Fundamentos.Redis.Controllers.RedisClientController">
+            <summary>
+            Controller utilizando [STRINGS] a classe IRedisClientsManager: para criar e encerrar as conexões evitando problema com múltiplas threads
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientController.Get(System.String)">
+            <summary>
+            Obtendo usuário pelo id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientController.Post(Fundamentos.Redis.Entities.User)">
+            <summary>
+            Inserindo usuário
+            </summary>
+            <param name="user">objeto usuário</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientController.Put(System.String,Fundamentos.Redis.Entities.User)">
+            <summary>
+            Atualizando usuário
+            </summary>
+            <param name="id">id do usuário</param>
+            <param name="user">objeto usuário</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientController.Delete(System.String)">
+            <summary>
+            Removendo o usuário pelo id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Fundamentos.Redis.Controllers.RedisClientListController">
+            <summary>
+            Controller utilizando [LISTAS] diretamente a classe redisclient, isso pode causar problemas com sistemas multi threads
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientListController.Get">
+            <summary>
+            Obtendo todos os elementos da lista
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientListController.Post(System.String)">
+            <summary>
+            Inserindo elemento na lista
+            </summary>
+            <param name="atendimentoid">id do atendimento</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.RedisClientListController.Delete(System.String)">
+            <summary>
+            Removendo elemento da lista
+            </summary>
+            <param name="atendimentoid">id do atendimento</param>
+            <returns></returns>
+        </member>
+        <member name="T:Fundamentos.Redis.Controllers.SetController">
+            <summary>
+            Controller utilizando [CONJUNTOS]
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.GetIntersection">
+            <summary>
+            Obtendo a interceção entre dois conjuntos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.GetDifference">
+            <summary>
+            Obtendo a diferença entre dois conjuntos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.AddElementsSetOne(System.String)">
+            <summary>
+            Inserindo elemento no primeiro conjunto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.AddElementsSetTwo(System.String)">
+            <summary>
+            Inserindo elemento no segundo conjunto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.RemoveElementSetOne(System.String)">
+            <summary>
+            Removendo elemento do primeiro conjunto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.SetController.RemoveElementSetTwo(System.String)">
+            <summary>
+            Removendo elemento do segundo conjunto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.GetAndRemoveFirstElementFromList(ServiceStack.Redis.IRedisClient,System.String)">
+            <summary>
+            Obtém o primeiro elemento adicionado na lista
+            </summary>
+            <param name="client">client do redis</param>
+            <param name="listId">identificador da lista</param>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.GetAndRemoveFirstElementFromListWithBlockWait(ServiceStack.Redis.IRedisClient,System.String,System.Int32)">
+            <summary>
+            Obtém e remove o primeiro elemento adicionado na lista
+            </summary>
+            <param name="client">client do redis</param>
+            <param name="listId">identificador da lista</param>
+            <param name="waitTime">Caso seja zero o programa irá esperar até um elemento ser adicionado na lista</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.AddElementLeftPositionList(ServiceStack.Redis.IRedisClient,System.String,System.String)">
+            <summary>
+            Adiciona um elemento na primeira posição da lista
+            </summary>
+            <param name="client">client do redis</param>
+            <param name="listId">identificador da lista</param>
+            <param name="value">valor a ser adicionado na lista</param>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.AddElementRightPositionList(ServiceStack.Redis.IRedisClient,System.String,System.String)">
+            <summary>
+            Adiciona um elemento na última posição da lista
+            </summary>
+            <param name="client">client do redis</param>
+            <param name="listId">identificador da lista</param>
+            <param name="value">valor a ser adicionado na lista</param>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.AddElementInSet(ServiceStack.Redis.IRedisClient,System.String[])">
+            <summary>
+            Adiciona elementos no conjunto
+            </summary>
+            <param name="elements">elementos para ser adicionados</param>
+        </member>
+        <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.AddElementInSet(ServiceStack.Redis.IRedisClient,System.String,System.String)">
+            <summary>
+            Remove elementos no conjunto
+            </summary>
+            <param name="element">elementos para ser adicionados</param>
+        </member>
+    </members>
+</doc>

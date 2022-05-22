@@ -7,7 +7,7 @@ namespace Fundamentos.Redis.Extensions
         /// <summary>
         /// Adiciona elementos no conjunto
         /// </summary>
-        /// <param name="elementos">elementos para ser adicionados</param>
+        /// <param name="elements">elementos para ser adicionados</param>
         public static void AddElementInSet(this IRedisClient client, params string[] elements)
         {
             client.Custom("SADD", elements);
@@ -16,7 +16,7 @@ namespace Fundamentos.Redis.Extensions
         /// <summary>
         /// Remove elementos no conjunto
         /// </summary>
-        /// <param name="elementos">elementos para ser adicionados</param>
+        /// <param name="element">elementos para ser adicionados</param>
         public static void AddElementInSet(this IRedisClient client, string setId, string element)
         {
             client.Custom("SREM", setId, element);
