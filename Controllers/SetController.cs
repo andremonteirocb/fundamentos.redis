@@ -5,7 +5,7 @@ using ServiceStack.Redis;
 namespace Fundamentos.Redis.Controllers
 {
     /// <summary>
-    /// Controller utilizando [CONJUNTOS]
+    /// Controller utilizando CONJUNTOS [SET]
     /// </summary>
     [ApiController]
     [Route("service-stack-redis-set")]
@@ -60,7 +60,7 @@ namespace Fundamentos.Redis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("add_elements_set_one")]
+        [Route("add-elements-set-one")]
         public IActionResult AddElementsSetOne(string elements)
         {
             using (var client = _manager.GetClient())
@@ -75,7 +75,7 @@ namespace Fundamentos.Redis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("add_elements_set_two")]
+        [Route("add-elements-set-two")]
         public IActionResult AddElementsSetTwo(string elements)
         {
             using (var client = _manager.GetClient())
@@ -90,7 +90,7 @@ namespace Fundamentos.Redis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete]
-        [Route("remove_elements_set_one")]
+        [Route("remove-elements-set-one")]
         public IActionResult RemoveElementSetOne(string element)
         {
             using (var client = _manager.GetClient())
@@ -105,7 +105,7 @@ namespace Fundamentos.Redis.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete]
-        [Route("remove_elements_set_two")]
+        [Route("remove-elements-set-two")]
         public IActionResult RemoveElementSetTwo(string element)
         {
             using (var client = _manager.GetClient())

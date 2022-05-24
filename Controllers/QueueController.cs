@@ -6,7 +6,7 @@ using ServiceStack.Redis;
 namespace Fundamentos.Redis.Controllers
 {
     /// <summary>
-    /// Controller utilizando [FILAS]
+    /// Controller utilizando LIST [SIMULANDO FILAS]
     /// </summary>
     [ApiController]
     [Route("service-stack-redis-queue")]

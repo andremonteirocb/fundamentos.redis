@@ -6,7 +6,7 @@
     <members>
         <member name="T:Fundamentos.Redis.Controllers.QueueController">
             <summary>
-            Controller utilizando [FILAS]
+            Controller utilizando LIST [SIMULANDO FILAS]
             </summary>
         </member>
         <member name="M:Fundamentos.Redis.Controllers.QueueController.Get">
@@ -120,7 +120,7 @@
         </member>
         <member name="T:Fundamentos.Redis.Controllers.SetController">
             <summary>
-            Controller utilizando [CONJUNTOS]
+            Controller utilizando CONJUNTOS [SET]
             </summary>
         </member>
         <member name="M:Fundamentos.Redis.Controllers.SetController.GetIntersection">
@@ -157,6 +157,40 @@
             <summary>
             Removendo elemento do segundo conjunto
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Fundamentos.Redis.Controllers.zSetController">
+            <summary>
+            Controller utilizando lista ordenada [ZSET]
+            </summary>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.zSetController.GetAll(System.Boolean)">
+            <summary>
+            Obtendo todos os elementos
+            </summary>
+            <param name="orderDesc">tipo de ordenação</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.zSetController.Get(System.String)">
+            <summary>
+            Obtendo valor de uma determinada chave
+            </summary>
+            <param name="value">chave para busca</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.zSetController.Post(System.String,System.Double)">
+            <summary>
+            Inserindo elemento e sua pontuação na lista ordenada
+            </summary>
+            <param name="value">chave</param>
+            <param name="score">valor</param>
+            <returns></returns>
+        </member>
+        <member name="M:Fundamentos.Redis.Controllers.zSetController.Delete(System.String)">
+            <summary>
+            Removendo determinado item da lista ordenada
+            </summary>
+            <param name="value">chave para remoção</param>
             <returns></returns>
         </member>
         <member name="M:Fundamentos.Redis.Extensions.RedisClientExtension.GetAndRemoveFirstElementFromList(ServiceStack.Redis.IRedisClient,System.String)">
